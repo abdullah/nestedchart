@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nested-Chart</title>
+	<link rel="stylesheet" href="lib/nestedchart.css">
+</head>
+<body>
+
+	<div id="test">
+      <canvas id="canvas">
+      This text is displayed if your browser does not support HTML5 Canvas.
+      </canvas>
+      <ul>
+        <li class="one">1</li>
+        <li class="two">2</li>
+        <li class="three">3</li>
+        <li class="four">4</li>
+        <li class="five">5</li>
+        <li class="six">6</li>
+      </ul>
+  </div>
+
+<script src="lib/nestedchart.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      nestedpie({
+        elem:document.getElementById("canvas"), // Canvas elem
+        elemH:300, // Canvas width
+        elemW:300, // Canvas height
+        colorsetfirst : ["rgba(255,127,80,0.3)","rgba(135,206,250,0.3)","rgba(218,112,214,0.3)","rgba(50,205,50,0.3)","rgba(255,165,0,0.3)","rgba(30,144,255,0.3)"],// Primary color
+        colorsetsecond : ["#ff7f50", "#87cefa", "#da70d6", "#32cd32", "#ffa500", "#1e90ff"],// Second Color
+        props:["one","two","three","four","five","six"], // property fields
+        datasetfirst : [40,15,10,15,12,8], // Primary data 
+        datasetsecond : [20,4,3,9,6,3], // Second data 
+        centerarea : 20, // Center area width , if you don't want center area  set the centerarea:false
+        centerareaColor : "#fff", // center area color
+        hoverColor : "rgba(0,0,0,.4)", // Hover color : If you don't want center area set the hoverColor:false
+        onMouseMove:function (e) {
+          var selector = "."+e.props
+          $('ul li').removeClass('active')
+          $(selector).addClass('active')
+        },
+        mouseout:function (e) {
+          $('ul li').removeClass('active')
+        }
+      })
+    });
+</script>
+</body>
+</html>
