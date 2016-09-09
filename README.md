@@ -7,7 +7,7 @@ Javascript 2D canvas nested pie-chart
 
 
 ```
-nestedpie({
+var pie = new Nestedpie({
   elem: DOM, // Canvas elem
   elemH:Number, // Canvas width
   elemW:Number, // Canvas height
@@ -22,6 +22,11 @@ nestedpie({
   onMouseMove: // () function a return pie object ,
   mouseout:// () return a canvas obj
 })
+
+pie.update({
+  datasetsecond : <Array>, // Second data 
+})
+        
 ```
 
  
