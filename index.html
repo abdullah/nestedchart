@@ -25,7 +25,9 @@
 <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-      nestedpie({
+
+      // var x = new nestedpie()
+      var ch =  new Nestedpie({
         elem:document.getElementById("canvas"), // Canvas elem
         elemH:300, // Canvas width
         elemW:300, // Canvas height
@@ -46,6 +48,18 @@
           $('ul li').removeClass('active')
         }
       })
+
+
+      ch.render()
+      
+      var x = 0;
+      setInterval(function () {
+        x ++
+        ch.update({
+          datasetsecond : [20,x,3,9,6,3], // Second data 
+        })
+      },4000)
+
     });
 </script>
 </body>
