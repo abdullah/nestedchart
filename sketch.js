@@ -1,27 +1,30 @@
 
 var config = {
 	canvas: "mycanvas",
-	cw: window.innerWidth,
-	ch: window.innerHeight,
-	donutWith:50,
-	radius:200,
+	cw: 600,
+	ch: 600,
+	donutWith:10,
+	radius:210,
 	values : [
 		{
 			max:4,
 			current:3,
 			maxColor:'#111111',
+			lineText: "test",
 			currentColor:'#ffffff'
 		},
 		{
 			max:10,
 			current:5,
 			maxColor:'#3E6185',
+			lineText: "test",
 			currentColor:'#cccccc'
 		},
 		{
 			max:20,
 			current:5,
 			maxColor:'#B1D298',
+			lineText: "test",
 			currentColor:'#2C6981'
 		}
 	]
@@ -64,8 +67,8 @@ Chart.prototype.setValues = function(){
 
 	for (var i = 0; i < c.values.length; i++) {
   		var end = lastAngle+radians(c.values[i].max/total)
-		this.slices.push(new Slice(cx, cy, c.radius+c.donutWith, lastAngle, end, c.values[i].maxColor,this.ctx))
-		this.slices.push(new Slice(cx, cy, c.values[i].current/c.values[i].max*c.radius+c.donutWith, lastAngle, end, c.values[i].currentColor,this.ctx))
+		this.slices.push(new Slice(cx, cy, c.radius+c.donutWith, lastAngle, end, c.values[i].maxColor,this.ctx,true,values[i].max))
+		this.slices.push(new Slice(cx, cy, c.values[i].current/c.values[i].max*c.radius+c.donutWith, lastAngle, end, c.values[i].currentColor,this.ctx,false,values[i].current))
 	    lastAngle += radians(c.values[i].max/total);
 	}	
 };
@@ -76,26 +79,41 @@ Chart.prototype.attachListener = function(){
 	this.canvas.addEventListener("mousemove", function(e) {
 	  var x = e.clientX;
 	  var y = e.clientY;
-	  self.slices.forEach(function(slice) {
-	    slice.render(function () {
-		    if (self.ctx.isPointInPath(x, y)) {
-		      slice.highlighted = true;
-		      slice.displayData();
-		    } else {
-		      slice.highlighted = false;
-		    }
-		    // self.ctx.closePath();
-	    })
+	  // self.slices.map(function(slice,index) {
+	  //   slice.render(function () {
+		 //    if (self.ctx.isPointInPath(x, y)) {
+		 //      slice.highlighted = true;
+		 //      slice.displayData();
+		 //    } else {
+		 //      slice.highlighted = false;
+		 //    }
+		 //    // self.ctx.closePath();
+	  //   })
 
-	  });
+	  // });
+	  
+
+	  for (var i = 0; i < self.slices.length; i+=2) {
+	  	   self.slices[i].render(function () {
+			    if (self.ctx.isPointInPath(x, y)) {
+			      self.slices[i].highlighted = true;
+			      self.slices[i+1].highlighted = true;
+			      self.slices[i].displayData();
+			    } else {
+			      self.slices[i].highlighted = false;
+			      self.slices[i+1].highlighted = false;
+			    }
+			    // self.ctx.closePath();
+		    })
+	   }
 	});
 };
 
 Chart.prototype.render = function(){
 
 	this.ctx.clearRect(0, 0, this.width, this.height);
-
-	this.slices.forEach(function(p) {
+	smooth(this.ctx)
+	this.slices.map(function(p) {
 		p.render();
 	});
     
