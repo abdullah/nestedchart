@@ -28,9 +28,8 @@
 	 */
 	function Chart(userConfig) {
 		// @TODO : Extend 
-		console.log(this)
-		this.config = mergeOptions(defconfig,userConfig)
 		_config = mergeOptions(defconfig,userConfig)
+		// this.values = _config.values
 		this.init()
 	}
 
@@ -42,6 +41,7 @@
 	Chart.prototype.mouseY;
 	Chart.prototype.total;
 	Chart.prototype.config={};
+	// Chart.prototype.values=[];
 	Chart.prototype.slices = [];
 
 	/**
@@ -50,7 +50,7 @@
 	 */
 	Chart.prototype.init = function(){
 		
-		var c = this.config;
+		var c = _config;
 		this.canvas = document.getElementById(c.canvas);
 		ctx = this.canvas.getContext('2d')
 		this.canvas.width = c.cw;
@@ -58,14 +58,18 @@
 		this.width = c.cw
 		this.height = c.ch
 
+	};
+	Chart.prototype.draw = function(){
 		this.setValues()
 		this.attachListener()
+		this.render()
 	};
 	/**
 	 * Preload from render
 	 */
 	Chart.prototype.setValues = function(){
-		var c = this.config
+		this.slices=[]
+		var c = _config
 		var total = getTotal(c.values)
 		var lastAngle = 0;
 		var cx = this.width/2
@@ -118,7 +122,7 @@
 				    if (ctx.isPointInPath(x, y)) {
 				      self.slices[i].highlighted = true;
 				      self.slices[i+1].highlighted = true;
-				      self.config.onhover({
+				      _config.onhover({
 				      	parent:self.slices[i],
 				      	child:self.slices[i+1],
 				      	x:x,
@@ -143,7 +147,7 @@
 		});
 	    
 	    ctx.beginPath();
-	    ctx.arc(this.width/2, this.height/2, this.config.donutWith, 0, 2 * Math.PI, false);
+	    ctx.arc(this.width/2, this.height/2, _config.donutWith, 0, 2 * Math.PI, false);
 	    ctx.fillStyle = 'white';
 	    ctx.fill();
 		ctx.closePath();
@@ -151,7 +155,8 @@
 	    _requestAnimationFrame(this.render.bind(this));
 	};
 	/** Update Pie */
-	Chart.prototype.update = function(){
+	Chart.prototype.update = function(config){
+		_config = mergeOptions(_config,config)
 		this.setValues()
 	};
 

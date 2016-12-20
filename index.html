@@ -11,15 +11,23 @@
       margin: auto;
       display: block;
     }
+    textarea{
+      width: 300px;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
   </style>
 </head>
 
 <body>
-<canvas id="mycanvas"></canvas>
+  <canvas id="mycanvas"></canvas>
+  <textarea class="debug"></textarea>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
   <script>
-    
-    var c = new Chart({
+    var config = {
         labelColor: "#111111",
         donutWith:10,
         radius:200,
@@ -49,8 +57,18 @@
           labelPrefix:"SWİFT"
         }
       ]
+    }
+    var c = new Chart(config)
+    c.draw()
+    console.log(c)
+    var d = document.querySelector('.debug')
+
+    d.addEventListener('change',function (e) {
+      var nc = JSON.parse(d.value)
+      c.update(nc)
     })
-    c.render()
+    document.querySelector('.debug').innerHTML = JSON.stringify(config, 2,2)
+
   </script>
 </body>
 
