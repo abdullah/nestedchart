@@ -2,63 +2,54 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- <script language="javascript" type="text/javascript" src="libraries/p5.js"></script> -->
-  <!-- uncomment lines below to include extra p5 libraries -->
-  <!-- <script language="javascript" src="libraries/p5.dom.js"></script> -->
-  <!-- <script language="javascript" src="../addons/p5.collide2D.js"></script> -->
-  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
-  <!-- this line removes any default padding and style. you might only need one of these values set. -->
   <style>
     body {
       padding: 0;
       margin: 0;
     }
     canvas{
-      outline: 1px solid red;
-    }
-    
-    button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 10px;
+      margin: auto;
+      display: block;
     }
   </style>
 </head>
 
 <body>
 <canvas id="mycanvas"></canvas>
-  <script language="javascript" type="text/javascript" src="helper.js"></script>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
-  <script language="javascript" type="text/javascript" src="slice.js"></script>
   <script>
-    var values = [
-    {
-      max:11,
-      current:3,
-      maxColor:'#E5FFB2',
-      currentColor:'#31C820'
-    },
-    {
-      max:14,
-      current:3,
-      maxColor:'#3fd3fd',
-      currentColor:'#dddddd'
-    },
-    {
-      max:10,
-      current:5,
-      maxColor:'#3E6185',
-      currentColor:'#cccccc'
-    },
-    {
-      max:20,
-      current:5,
-      maxColor:'#B1D298',
-      currentColor:'#2C6981'
-    }
-  ]
-    var c = new Chart(values)
+    
+    var c = new Chart({
+      labelColor: "#111111",
+      donutWith:10,
+      radius:200,
+      values:[
+      {
+        max:11,
+        current:1,
+        currentColor:'#31C820',
+        labelPrefix:"JAVA"
+      },
+      {
+        max:14,
+        current:3,
+        currentColor:'#DA0036',
+        labelPrefix:"ANDROİD"
+      },
+      {
+        max:10,
+        current:5,
+        currentColor:'#291FCC',
+        labelPrefix:"IOS"
+      },
+      {
+        max:20,
+        current:5,
+        currentColor:'#2C6981',
+        labelPrefix:"SWİFT"
+      }
+    ]
+    })
     c.render()
   </script>
 </body>
