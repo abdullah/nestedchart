@@ -1,6 +1,8 @@
 # nestedchart
 Javascript 2D canvas nested pie-chart
 
+[Demo](http://abdullah.github.io/nestedchart/)
+
 
 
 ![Alt text](piess.png?raw=true "Optional Title")
