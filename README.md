@@ -9,7 +9,7 @@ Javascript 2D canvas nested pie-chart
 
 
 ```javascript
-    var c = new Chart({
+   var config = {
         canvas: "mycanvas",
         cw: 800,
         ch: 800,
@@ -20,36 +20,41 @@ Javascript 2D canvas nested pie-chart
         labelStrokeWeight: 1,
         labelColor: "#111111",
         outSideLineWidth: 10,
-        donutWith:100,
-        radius:100,
+        donutWith: 40,
+        radius: 200,
+        hoverOpacPercent:0.2,
+        secondColorOpacPercent:0.6,
+        values: [],
+        onhover: function () { },
         values:[
         {
           max:11,
           current:1,
           currentColor:'#31C820',
-          labelPrefix:"JAVA"
+          labelText:" %m JAVA %c Javascript"
         },
         {
           max:14,
           current:3,
           currentColor:'#DA0036',
-          labelPrefix:"ANDROİD"
+          labelText:"ANDROİD"
         },
         {
           max:10,
           current:5,
           currentColor:'#291FCC',
-          labelPrefix:"IOS"
+          labelText:"IOS"
         },
         {
           max:20,
           current:5,
           currentColor:'#2C6981',
-          labelPrefix:"SWİFT"
+          labelText:"SWİFT"
         }
       ]
-    })
-    c.render()
+    }
+    var c = new Chart(config)
+    c.draw()
         
 ```
 
