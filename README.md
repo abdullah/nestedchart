@@ -31,13 +31,13 @@ Javascript 2D canvas nested pie-chart
           max:11,
           current:1,
           currentColor:'#31C820',
-          labelText:" %m JAVA %c Javascript"
+          labelText:" %m JAVA %c JavaScript"
         },
         {
           max:14,
           current:3,
           currentColor:'#DA0036',
-          labelText:"ANDROİD"
+          labelText:"ANDROID"
         },
         {
           max:10,
@@ -49,7 +49,7 @@ Javascript 2D canvas nested pie-chart
           max:20,
           current:5,
           currentColor:'#2C6981',
-          labelText:"SWİFT"
+          labelText:"SWIFT"
         }
       ]
     }
