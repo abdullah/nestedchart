@@ -1,5 +1,5 @@
 # nestedchart
-Javascript 2D canvas nested pie-chart
+JavaScript 2D canvas nested pie-chart
 
 [Demo](http://abdullah.github.io/nestedchart/)
 
